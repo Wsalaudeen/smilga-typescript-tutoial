@@ -225,26 +225,216 @@
 // console.log(processData(10));
 // console.log(processData("hello"));
 // console.log(processData("hello", { reverse: true }));
-type user = { id: number; name: string; isActive: boolean };
-const john: user = {
-  id: 1,
-  name: "john",
-  isActive: true,
-};
 
-const susan: user = {
-  id: 1,
-  name: "susan",
-  isActive: false,
-};
-
-function createUser(user: user): user {
-  console.log(`Hello there ${user.name.toUpperCase()}!!!`);
-  return user;
-}
-
-// const john : { id: number; name: string; isActive: boolean} ={
-//   id:1,
+// type user = { id: number; name: string; isActive: boolean };
+// const john: user = {
+//   id: 1,
 //   name: "john",
 //   isActive: true,
 // };
+
+// const susan: user = {
+//   id: 1,
+//   name: "susan",
+//   isActive: false,
+// };
+
+// function createUser(user: user): user {
+//   console.log(`Hello there ${user.name.toUpperCase()}!!!`);
+//   return user;
+// }
+
+// type StringOrNumber = string | number;
+
+// let value: StringOrNumber;
+// value = "hello";
+// value = 123;
+
+// type Theme = "light" | "dark";
+
+// let theme: Theme;
+// theme = "dark";
+// theme = "light";
+
+// function setTheme(t: Theme) {
+//   theme = t;
+// }
+// setTheme("dark");
+
+// type Employee = { id: number; name: string; department: string };
+// type Manager = { id: number; name: string; employees: Employee[] };
+
+// type staff = Employee | Manager;
+
+// function printStaffDetails(staff: staff): void {
+//   if ("employees" in staff) {
+//     console.log(
+//       `${staff.name} is a manager in the ${staff.employees.length} employees`
+//     );
+//   } else {
+//     console.log(
+//       `${staff.name} is an employee in the ${staff.department} department`
+//     );
+//   }
+// }
+
+// const jamiu: Employee = {
+//   id: 1,
+//   name: "jamiu",
+//   department: "medical lab science",
+// };
+// const bamilosin: Employee = {
+//   id: 2,
+//   name: "alice",
+//   department: "HR",
+// };
+// const lanre: Employee = {
+//   id: 3,
+//   name: "lanzy",
+//   department: "tech",
+// };
+
+// const mubarak: Manager = {
+//   id: 1,
+//   name: "mubarak",
+//   employees: [jamiu, bamilosin, lanre],
+// };
+
+// printStaffDetails(jamiu);
+// printStaffDetails(bamilosin);
+// printStaffDetails(mubarak);
+// printStaffDetails(lanre);
+
+// type Book = { id: number; name: string; price: number };
+// type DiscountedBook = Book & { discount: number };
+
+// const book1: Book = {
+//   id: 1,
+//   name: "how to cook a dragon",
+//   price: 15,
+// };
+
+// const book2: Book = {
+//   id: 2,
+//   name: "the secret life of unicorns",
+//   price: 18,
+// };
+
+// const discountedBook: DiscountedBook = {
+//   id: 3,
+//   name: "Gnomes vs. Goblins: The Utlimate Guide",
+//   price: 25,
+//   discount: 0.15,
+// };
+
+// const propName = "age";
+// type Animal = { [propName]: number };
+// let tiger: Animal = { [propName]: 5 };
+
+// interface type
+// interface Book {
+//   readonly isbn: number;
+//   title: string;
+//   author: string;
+//   genre?: string;
+//   //method
+//   printAuthor(): void;
+//   printTitle(message: string): string;
+//   printSomething: (someValue: number) => number;
+// }
+
+// const deepWork: Book = {
+//   isbn: 123,
+//   title: "deep work",
+//   author: "cal newport",
+//   genre: "self-help",
+//   // printAuthor() {
+//   //   console.log(this.author);
+//   // },
+//   printTitle(message) {
+//     return `${this.title} ${message}`;
+//   },
+//   // //first option
+//   printSomething: function (someValue) {
+//     return someValue;
+//   },
+// second option
+// printSomething: (someValue) => {
+//   // console.log(this);
+
+//   return someValue;
+// },
+
+// third option
+// printSomething(someValue) {
+//   return someValue;
+// },
+//   printAuthor: () => {
+//     console.log(deepWork.author);
+//   },
+// };
+// const result = deepWork.printSomething(88);
+// console.log(result);
+
+// deepWork.printAuthor();
+// const result = deepWork.printTitle("is an awesome book");
+// console.log(result);
+// methods in interfaces
+
+interface computer {
+  readonly id: number;
+  brand: string;
+  ram: number;
+  upgradeRam(increase: number): number;
+  storage?: number;
+}
+
+const laptop: computer = {
+  id: 1,
+  brand: "random brand",
+  ram: 8,
+  upgradeRam(increase) {
+    this.ram += increase;
+    return this.ram;
+  },
+};
+
+laptop.storage = 256;
+console.log(laptop.upgradeRam(8));
+console.log(laptop);
+
+interface person {
+  name: string;
+  getDetails(): string;
+}
+interface person {
+  age: number;
+}
+
+interface DogOwner {
+  dogName: string;
+  getDogDetails(): string;
+}
+
+const person: person = {
+  name: "john",
+  age: 30,
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  },
+};
+
+// person.getDetails();
+
+interface Employee extends person {
+  employeeId: number;
+}
+const employee = {
+  name: "bayo",
+  age: 28,
+  employeeId: 123,
+  getDetails() {
+    return ` Name: ${this.name}, Age:${this.age}, Employee ID :${this.employeeId}`;
+  },
+};
+console.log(employee.getDetails());
