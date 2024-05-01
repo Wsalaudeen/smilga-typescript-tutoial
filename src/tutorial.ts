@@ -376,65 +376,376 @@
 // const result = deepWork.printSomething(88);
 // console.log(result);
 
-// deepWork.printAuthor();
-// const result = deepWork.printTitle("is an awesome book");
-// console.log(result);
-// methods in interfaces
+// // deepWork.printAuthor();
+// // const result = deepWork.printTitle("is an awesome book");
+// // console.log(result);
+// // methods in interfaces
 
-interface computer {
-  readonly id: number;
-  brand: string;
-  ram: number;
-  upgradeRam(increase: number): number;
-  storage?: number;
+// interface computer {
+//   readonly id: number;
+//   brand: string;
+//   ram: number;
+//   upgradeRam(increase: number): number;
+//   storage?: number;
+// }
+
+// const laptop: computer = {
+//   id: 1,
+//   brand: "random brand",
+//   ram: 8,
+//   upgradeRam(increase) {
+//     this.ram += increase;
+//     return this.ram;
+//   },
+// };
+
+// laptop.storage = 256;
+// console.log(laptop.upgradeRam(8));
+// console.log(laptop);
+
+// interface person {
+//   name: string;
+//   getDetails(): string;
+// }
+// interface person {
+//   age: number;
+// }
+
+// interface DogOwner {
+//   dogName: string;
+//   getDogDetails(): string;
+// }
+
+// const person: person = {
+//   name: "john",
+//   age: 30,
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}`;
+//   },
+// };
+
+// // person.getDetails();
+
+// interface Employee {
+//   employeeId: number;
+// }
+// const employee = {
+//   name: "bayo",
+//   age: 28,
+//   employeeId: 123,
+//   getDetails() {
+//     return ` Name: ${this.name}, Age:${this.age}, Employee ID :${this.employeeId}`;
+//   },
+// };
+// console.log(employee.getDetails());
+
+// interface manager extends person, DogOwner {
+//   managePeople(): void;
+// }
+// const manager: manager = {
+//   name: "bob",
+//   age: 35,
+//   dogName: "rex",
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}`;
+//   },
+//   getDogDetails() {
+//     return `Name: ${this.dogName}`;
+//   },
+//   managePeople() {
+//     console.log("Managing people...");
+//   },
+// };
+// manager.managePeople();
+// function getEmployee(): Person | DogOwner | Manager {
+//   const random = Math.random();
+//   if (random < 0.3) {
+//     return {
+//       name: "john",
+//     };
+//   } else if (random < 0.66) {
+//     return {
+//       name: "lanre",
+//       dogName: "rex",
+//     };
+//   } else {
+//     return {
+//       name: "bob",
+//       managePeople() {
+//         console.log("managing people....");
+//       },
+//       delegateTasks() {
+//         console.log("Delegating tasks....");
+//       },
+//     };
+//   }
+// }
+
+// interface Person {
+//   name: string;
+// }
+
+// interface DogOwner extends Person {
+//   dogName: string;
+// }
+
+// interface Manager extends Person {
+//   managePeople(): void;
+//   delegateTasks(): void;
+// }
+
+// const employee: Person | DogOwner | Manager = getEmployee();
+
+// console.log(employee);
+// function isManager(obj: Person | DogOwner | Manager): obj is Manager {
+//   return "managePeople" in obj;
+// }
+
+// if (isManager(employee)) {
+//   employee.delegateTasks();
+// }
+// console.log(isManager(employee));
+
+// //interface and type aliases
+// type Score = number;
+// type NumberOrString = number | string;
+// type Direction = "up" | "down" | "left" | "right";
+
+// // tuple and anums
+// let person: [string, number] = ["lanre", 25];
+
+// let date: readonly [number, number, number] = [12, 17, 2001];
+
+// // date.push(75);
+// console.log(date);
+
+// function getPerson(): [string, number] {
+//   return ["john", 25];
+// }
+
+// let randomPerson = getPerson();
+// console.log(randomPerson[0]);
+// console.log(randomPerson[1]);
+
+// let susan: [string, number?] = ["susan"];
+
+// enum ServerResonseStatus {
+//   success,
+//   Error,
+// }
+
+// interface ServerResponse {
+//   result: ServerResonseStatus;
+//   data: string[];
+// }
+
+// function getServerResponse(): ServerResponse {
+//   return {
+//     result: ServerResonseStatus.Error,
+//     data: ["first item", "second item"],
+//   };
+// }
+
+// const response: ServerResponse = getServerResponse();
+// console.log(response);
+
+// enum UserRole {
+//   Admin,
+//   Manager,
+//   Employee,
+// }
+
+// type User = {
+//   id: number;
+//   name: string;
+//   role: UserRole;
+//   contact: [string, string];
+// };
+
+// function createUser(user: User): User {
+//   return user;
+// }
+
+// const user: User = createUser({
+//   id: 1,
+//   name: "lanre salaudeen",
+//   role: UserRole.Admin,
+//   contact: ["salaudeenwarees@gmail.com", "08111479878"],
+// });
+// console.log(user);
+
+// let someValue: any = "this is a string";
+
+// let strLength: number = (someValue as string).length;
+
+// console.log(strLength);
+
+// type Bird = {
+//   lanre: string;
+//   breed: string;
+//   // key: number;
+// };
+
+// let birdString = '{"lanre": "Eagle"}';
+// let dogString = '{"breed": "poodle"}';
+
+// let birdObject = JSON.parse(birdString);
+// let dogObject = JSON.parse(dogString);
+
+// let bird = birdObject as Bird;
+// let dog = dogObject as Bird;
+
+// console.log(bird.lanre);
+// console.log(dog.breed);
+
+// enum Status {
+//   pending = "pending",
+//   Declined = "declined",
+// }
+
+// type User = {
+//   name: string;
+//   status: Status;
+// };
+
+// const statusValue = "pending";
+// const user: User = { name: "john", status: statusValue as Status };
+
+//
+
+// let unknownValue: unknown;
+// unknownValue = "hello world";
+// unknownValue = [1, 2, 3];
+// unknownValue = 42.33455;
+
+// if (typeof unknownValue == "number") {
+//   unknownValue.toFixed(2);
+// }
+
+// function runSomeCode() {
+//   const random = Math.random();
+//   if (random < 0.5) {
+//     throw new Error("there was error...");
+//   } else {
+//     throw "some error";
+//   }
+// }
+
+// try {
+//   runSomeCode();
+// } catch (error) {
+//   if (error instanceof Error) {
+//     console.log(error.message);
+//   } else {
+//     console.log(error);
+//   }
+// }
+
+//  let someValue : never = 0
+
+// type Theme = "light" | "dark";
+
+// function checkTheme(theme: Theme): void {
+//   if (theme === "light") {
+//     console.log("light theme");
+//     return;
+//   }
+//   if (theme === "dark") {
+//     console.log("dark theme");
+//     return;
+//   }
+//   theme;
+// }
+
+// enum Color {
+//   Red,
+//   Blue,
+//   Green,
+// }
+
+// function getColorName(color: Color) {
+//   switch (color) {
+//     case Color.Red:
+//       return "Red";
+//     case Color.Blue:
+//       return "Blue";
+//     case Color.Green:
+//       return "Green";
+//     default:
+//       // at build time
+//       let unexpectedColor: never = color;
+//       // at run time
+//       throw new Error(`Unexpected color value : ${color}`);
+//   }
+// }
+
+// console.log(getColorName(Color.Red));
+// console.log(getColorName(Color.Blue));
+// console.log(getColorName(Color.Green));
+// import { susan } from "./action";
+
+// const {susan}= " susan";
+
+// import newStudent, { sayHello, person, type Student } from "./action";
+// // import { someValue } from "./example.js";
+
+// sayHello("typescript");
+// console.log(person);
+// console.log(newStudent);
+
+// const anotherStudent: Student = {
+//   name: "bob",
+//   age: 23,
+// };
+
+// console.log(anotherStudent);
+
+// type ValueType = string | number | boolean;
+
+// let value: ValueType;
+// const random = Math.random();
+// value = random < 0.33 ? "Hello" : random < 0.66 ? 123.456 : true;
+
+// function checkValue(value: ValueType): void {
+//   if (typeof value === "string") {
+//     console.log(value.toLowerCase());
+//     return;
+//   }
+//   if (typeof value === "number") {
+//     console.log(value.toFixed(2));
+//     return;
+//   }
+// }
+
+// checkValue();
+
+// equality narrowing
+
+// type Dog = { type: "dog"; name: string; bark: () => void };
+// type Cat = { type: "cat"; name: string; meow: () => void };
+// type Animal = Dog | Cat;
+
+// function makeSound(animal: Animal) {
+//   if (animal.type === "dog") {
+//     animal.bark();
+//   } else {
+//     animal.meow();
+//   }
+// }
+
+// function makeSound(animal: Animal) {
+//   if ("bark" in animal) {
+//     animal.bark();
+//   } else {
+//     animal.meow();
+//   }
+// }
+// truthy/falsy guard
+
+function printLength(str: string | null | undefined) {
+  if (str) {
+    console.log(str.length);
+  } else {
+    console.log("no string provided");
+  }
 }
-
-const laptop: computer = {
-  id: 1,
-  brand: "random brand",
-  ram: 8,
-  upgradeRam(increase) {
-    this.ram += increase;
-    return this.ram;
-  },
-};
-
-laptop.storage = 256;
-console.log(laptop.upgradeRam(8));
-console.log(laptop);
-
-interface person {
-  name: string;
-  getDetails(): string;
-}
-interface person {
-  age: number;
-}
-
-interface DogOwner {
-  dogName: string;
-  getDogDetails(): string;
-}
-
-const person: person = {
-  name: "john",
-  age: 30,
-  getDetails() {
-    return `Name: ${this.name}, Age: ${this.age}`;
-  },
-};
-
-// person.getDetails();
-
-interface Employee extends person {
-  employeeId: number;
-}
-const employee = {
-  name: "bayo",
-  age: 28,
-  employeeId: 123,
-  getDetails() {
-    return ` Name: ${this.name}, Age:${this.age}, Employee ID :${this.employeeId}`;
-  },
-};
-console.log(employee.getDetails());
