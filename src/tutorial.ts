@@ -742,10 +742,246 @@
 // }
 // truthy/falsy guard
 
-function printLength(str: string | null | undefined) {
-  if (str) {
-    console.log(str.length);
-  } else {
-    console.log("no string provided");
+// function printLength(str: string | null | undefined) {
+//   if (str) {
+//     console.log(str.length);
+//   } else {
+//     console.log("no string provided");
+//   }
+// }
+
+// printLength("hello");
+// printLength("");
+// printLength(null);
+// printLength();
+// printLength(undefined);
+
+// try {
+//   throw new Error("This an error");
+// } catch (error) {
+//   if (error instanceof Error) {
+//     console.log(`caught an Error object : ${error.message} `);
+//   } else {
+//     console.log("unknown error......");
+//   }
+// }
+
+// // function checkInput(input: Date | string): string {
+// //   if (input instanceof Date) {
+// //     return input.getFullYear().toString();
+// //   }
+// //   return input;
+// // }
+
+// // const year = checkInput(new Date());
+// // const random = checkInput("2020-05-05");
+
+// // console.log(year);
+// // console.log(random);
+
+// // type predicate
+
+// type student = {
+//   name: string;
+//   study: () => void;
+// };
+
+// type user = {
+//   name: string;
+//   login: () => void;
+// };
+
+// type Person = student | user;
+
+// const randomPerson = (): Person => {
+//   return Math.random() > 0.5
+//     ? { name: "john", study: () => console.log("studying") }
+//     : { name: "mary", login: () => console.log("logging in") };
+// };
+
+// const person = randomPerson();
+// function isStudent(person: Person): person is student {
+//   // return "study" in person;
+//   return (person as student).study !== undefined;
+// }
+
+// if (isStudent(person)) {
+//   person.study();
+// } else {
+//   person.login();
+// }
+
+// //
+
+// type IncrementAction = {
+//   type: "increment";
+//   amount: number;
+//   timestamp: number;
+//   user: string;
+// };
+
+// type DecrementAction = {
+//   type: "decrement";
+//   amount: number;
+//   timestamp: number;
+//   user: string;
+// };
+
+// type Action = IncrementAction | DecrementAction;
+
+// function reducer(state: number, action: Action) {
+//   switch (action.type) {
+//     case "increment":
+//       return state + action.amount;
+//     case "decrement":
+//       return state - action.amount;
+//     default:
+//       const unexpectedAction: never = action;
+//       throw new Error(`unexpected action: ${unexpectedAction}`);
+//   }
+// }
+
+// const newState = reducer(15, {
+//   user: "john",
+//   type: "increment",
+//   amount: 5,
+//   timestamp: 123456,
+// });
+
+// let array1: string[] = ["Apple", "Banana", "Mango"];
+// let array2: number[] = [1, 2, 3];
+// let array3: boolean[] = [true, false, true];
+
+// let array1: Array<string> = ["Apple", "Banana", "Mango"];
+// function createString(arg: string): string {
+//   return arg;
+// }
+
+// function createNumber(arg: number): number {
+//   return arg;
+// }
+
+// function genericFunction<T>(arg: T): T {
+//   return arg;
+// }
+
+// const someStringValue = genericFunction<string>("hello world");
+// const someNumberValue = genericFunction<number>(26);
+// console.log(someStringValue, someNumberValue);
+
+// interface GenericInterface<T> {
+//   value: T;
+//   getValue: () => T;
+// }
+
+// const genericString: GenericInterface<string> = {
+//   value: "hello world",
+//   getValue() {
+//     return this.value;
+//   },
+// };
+
+// async function someFunc(): Promise<number> {
+//   return 234450;
+// }
+
+// const result = someFunc();
+
+// function generateStringArray(length: number, value: string): string[] {
+//   let result: string[] = [];
+//   result = Array(length).fill(value);
+//   return result;
+// }
+// console.log(generateStringArray(6, "hello"));
+
+// function createArray<T>(length: number, value: T): Array<T> {
+//   let result: T[] = [];
+//   result = Array(length).fill(value);
+//   return result;
+// }
+
+// console.log(createArray<string>(5, "olanrewaju"));
+
+// function pair<n, s>(param1: n, param2: s): [n, s] {
+//   return [param1, param2];
+// }
+
+// let result = pair<number, string>(65, "orange");
+// console.log(result);
+
+// function processValue<T extends string | number>(value: T): T {
+//   console.log(value);
+//   return value;
+// }
+
+// processValue("bayo");
+// processValue(88);
+// type Product = {
+//   name: string;
+//   price: number;
+// };
+// const product: Product = {
+//   name: "shoes",
+//   price: 1.99,
+// };
+
+// type Student = {
+//   name: string;
+//   age: number;
+// };
+// const student: Student = {
+//   name: "peter",
+//   age: 20,
+// };
+
+// function printName<T extends { name: string }>(input: T): void {
+//   console.log(input.name);
+// }
+
+// printName(student);
+// printName(product);
+
+// interface StoreData<T = any> {
+//   data: T[];
+// }
+
+// const storeNumbers: StoreData<number> = {
+//   data: [1, 2, 3, 4],
+// };
+// const randomStuff: StoreData<any> = {
+//   data: ["random", 1],
+// };
+
+// data is located in the data property
+
+// const { data } = axios.get(someUrl);
+// axios.get<{ name: string }[]>(someUrl);
+
+// export class Axios {
+//   get<T = any, R = AxiosResponse<T>, D = any>(
+//     url: string,
+//     config?: AxiosRequestconfig<D>
+//   );
+// }
+
+const url = "https://www.course-api.com/react-tours-project";
+
+async function fetchData(url: string) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error ? error.message : "there was an error...";
+    console.log(errorMsg);
+    return [];
   }
 }
+
+const tours = await fetchData(url);
