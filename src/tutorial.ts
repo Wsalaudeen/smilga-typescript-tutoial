@@ -964,19 +964,19 @@
 // //   );
 // // }
 
-import { z } from "zod";
+// import { z } from "zod";
 
-const url = "https://www.course-api.com/react-tours-project";
+// const url = "https://www.course-api.com/react-tours-project";
 
-const tourSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  image: z.string(),
-  price: z.string(),
-  // something: z.number(),
-});
+// const tourSchema = z.object({
+//   id: z.string(),
+//   name: z.string(),
+//   image: z.string(),
+//   price: z.string(),
+//   // something: z.number(),
+// });
 
-type Tour = z.infer<typeof tourSchema>;
+// type Tour = z.infer<typeof tourSchema>;
 
 // type Tour = {
 //   id: string;
@@ -1019,26 +1019,44 @@ type Tour = z.infer<typeof tourSchema>;
 // import bcryptjs from "bcryptjs";
 // let something = "something";
 
-class Book {
-  private checkedOut: boolean = false;
-  constructor(
-    readonly title: string,
-    public author: string // private someValue: number
-  ) {}
+// class Book {
+//   private checkedOut: boolean = false;
+//   constructor(
+//     readonly title: string,
+//     public author: string // private someValue: number
+//   ) {}
 
-  get info() {
-    return `${this.title} by ${this.author}`;
-  }
+//   get info() {
+//     return `${this.title} by ${this.author}`;
+//   }
 
-  private set checkOut(checkedOut: boolean) {
-    this.checkedOut = checkedOut;
-  }
-}
-const deepWork = new Book("Deep work", "cal Newport");
+//   private set checkOut(checkedOut: boolean) {
+//     this.checkedOut = checkedOut;
+//   }
+// }
+// const deepWork = new Book("Deep work", "cal Newport");
 
-console.log(deepWork.info);
+// console.log(deepWork.info);
 
-// deepWork.checkOut = true;
-console.log(deepWork);
+// // deepWork.checkOut = true;
+// console.log(deepWork);
 
 // deepWork.author;
+
+// interface IPerson {
+//   name: string;
+//   age: number;
+//   greet(): void;
+// }
+
+// class Person implements IPerson {
+//   constructor(public name: string, public age: number) {}
+//   greet(): void {
+//     console.log(
+//       `Hello, my name is ${this.name} and i am ${this.age} years old `
+//     );
+//   }
+// }
+
+// const hipster = new Person("shakeAndBake", 100);
+// hipster.greet();
