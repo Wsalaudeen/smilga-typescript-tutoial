@@ -922,66 +922,123 @@
 // };
 // const product: Product = {
 //   name: "shoes",
-//   price: 1.99,
-// };
+// //   price: 1.99,
+// // };
 
-// type Student = {
-//   name: string;
-//   age: number;
-// };
-// const student: Student = {
-//   name: "peter",
-//   age: 20,
-// };
+// // type Student = {
+// //   name: string;
+// //   age: number;
+// // };
+// // const student: Student = {
+// //   name: "peter",
+// //   age: 20,
+// // };
 
-// function printName<T extends { name: string }>(input: T): void {
-//   console.log(input.name);
-// }
+// // function printName<T extends { name: string }>(input: T): void {
+// //   console.log(input.name);
+// // }
 
-// printName(student);
-// printName(product);
+// // printName(student);
+// // printName(product);
 
-// interface StoreData<T = any> {
-//   data: T[];
-// }
+// // interface StoreData<T = any> {
+// //   data: T[];
+// // }
 
-// const storeNumbers: StoreData<number> = {
-//   data: [1, 2, 3, 4],
-// };
-// const randomStuff: StoreData<any> = {
-//   data: ["random", 1],
-// };
+// // const storeNumbers: StoreData<number> = {
+// //   data: [1, 2, 3, 4],
+// // };
+// // const randomStuff: StoreData<any> = {
+// //   data: ["random", 1],
+// // };
 
-// data is located in the data property
+// // data is located in the data property
 
-// const { data } = axios.get(someUrl);
-// axios.get<{ name: string }[]>(someUrl);
+// // const { data } = axios.get(someUrl);
+// // axios.get<{ name: string }[]>(someUrl);
 
-// export class Axios {
-//   get<T = any, R = AxiosResponse<T>, D = any>(
-//     url: string,
-//     config?: AxiosRequestconfig<D>
-//   );
-// }
+// // export class Axios {
+// //   get<T = any, R = AxiosResponse<T>, D = any>(
+// //     url: string,
+// //     config?: AxiosRequestconfig<D>
+// //   );
+// // }
+
+import { z } from "zod";
 
 const url = "https://www.course-api.com/react-tours-project";
 
-async function fetchData(url: string) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    console.log(data);
+const tourSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  image: z.string(),
+  price: z.string(),
+  // something: z.number(),
+});
 
-    return data;
-  } catch (error) {
-    const errorMsg =
-      error instanceof Error ? error.message : "there was an error...";
-    console.log(errorMsg);
-    return [];
+type Tour = z.infer<typeof tourSchema>;
+
+// type Tour = {
+//   id: string;
+//   name: string;
+//   info: string;
+//   image: string;
+//   price: string;
+// };
+
+// async function fetchData(url: string): Promise<Tour[]> {
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     const rawdata: Tour[] = await response.json();
+
+//     const result = tourSchema.array().safeParse(rawdata);
+
+//     console.log(result);
+
+//     if (!result.success) {
+//       throw new Error(`Invalid data: ${result.error}`);
+//     }
+
+//     return result.data;
+//   } catch (error) {
+//     const errorMsg =
+//       error instanceof Error ? error.message : "there was an error...";
+//     console.log(errorMsg);
+//     return [];
+//   }
+// }
+
+// const tours = await fetchData(url);
+// tours.map((tour) => {
+//   console.log(tour.name);
+// });
+// import { Random } from "./types";
+// import bcryptjs from "bcryptjs";
+// let something = "something";
+
+class Book {
+  private checkedOut: boolean = false;
+  constructor(
+    readonly title: string,
+    public author: string // private someValue: number
+  ) {}
+
+  get info() {
+    return `${this.title} by ${this.author}`;
+  }
+
+  private set checkOut(checkedOut: boolean) {
+    this.checkedOut = checkedOut;
   }
 }
+const deepWork = new Book("Deep work", "cal Newport");
 
-const tours = await fetchData(url);
+console.log(deepWork.info);
+
+// deepWork.checkOut = true;
+console.log(deepWork);
+
+// deepWork.author;
