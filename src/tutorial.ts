@@ -1060,3 +1060,44 @@
 
 // const hipster = new Person("shakeAndBake", 100);
 // hipster.greet();
+
+// let x = 10;
+// const date = "oops" as Date;
+// date.toISOStri
+// function add(a: number, b: string): string | number {
+//   return a + b;
+// }
+// const result = add(2, "4");
+// console.log(result);
+
+// const myCar = {
+//   make: "toyota",
+//   model: "corolla",
+//   year: 2002,
+// };
+
+// type car = {
+//   make: string;
+//   model: string;
+//   year: number;
+// };
+
+function printCar(car: {
+  make: string;
+  model: string;
+  year: number;
+  chargeVoltage?: number;
+}) {
+  let str = `${car.make} ${car.model} ${car.year}`;
+  if (typeof car.chargeVoltage === "number") {
+    str += `//${car.chargeVoltage}v`;
+    console.log(str);
+  }
+}
+
+printCar({
+  make: "Tesla",
+  model: "model 3",
+  year: 2020,
+  chargeVoltage: 220,
+});
