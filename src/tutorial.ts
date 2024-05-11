@@ -1082,22 +1082,82 @@
 //   year: number;
 // };
 
-function printCar(car: {
-  make: string;
-  model: string;
-  year: number;
-  chargeVoltage?: number;
-}) {
-  let str = `${car.make} ${car.model} ${car.year}`;
-  if (typeof car.chargeVoltage === "number") {
-    str += `//${car.chargeVoltage}v`;
-    console.log(str);
-  }
-}
+// function printCar(car: {
+//   make: string;
+//   model: string;
+//   year: number;
+//   chargeVoltage?: number;
+// }) {
+//   let str = `${car.make} ${car.model} ${car.year}`;
+//   if (typeof car.chargeVoltage === "number") {
+//     str += `//${car.chargeVoltage}v`;
+//     console.log(str);
+//   }
+// }
 
-printCar({
-  make: "Tesla",
-  model: "model 3",
-  year: 2020,
-  chargeVoltage: 220,
-});
+// printCar({
+//   make: "Tesla",
+//   model: "model 3",
+//   year: 2020,
+//   chargeVoltage: 220,
+// });
+
+const phones: {
+  mobile: {
+    country: string;
+    area: string;
+    number: string;
+  };
+  [k: string]:
+    | {
+        country: string;
+        area: string;
+        number: string;
+      }
+    | undefined;
+} = {
+  home: { country: "+1", area: "211", number: "652-4515" },
+  work: { country: "+1", area: "670", number: "752-5856" },
+  mobile: { country: "+1", area: "322", number: "525-4357" },
+};
+const y = phones["aaaaa"];
+
+// phones.mobile;
+// phones["work"]
+
+// phones.fax;
+// const x: { [k: string]: string } = {};
+// x.foo = "bar";
+
+// phones.custome_1;
+// const phones: {
+//   [k: string]: {
+//     country: string;
+//     area: string;
+//     number: string;
+//   };
+// } = {};
+
+// const fileExtensions = ["js", "ts"];
+// //string[]
+
+// const cars = [
+//   {
+//     make: "toyota",
+//     model: "corolla",
+//     year: 2002,
+//   },
+// ];
+
+// tuples
+
+// let car2 = [2002, "toyota", "corolla"];
+
+// const [year, make, model] = car2;
+
+// let myCar3: [number, string, string] = [2002, "toyota", "corolla"];
+// myCar3 = ["honda", 2017, "accord"];
+// myCar3 = [2017, "honda", "accord"];
+
+// const numPair: readonly [number, number] = [4, 5];
+// numPair.length;
