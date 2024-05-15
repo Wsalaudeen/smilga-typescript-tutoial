@@ -1095,32 +1095,32 @@
 //   }
 // }
 
-// printCar({
-//   make: "Tesla",
-//   model: "model 3",
-//   year: 2020,
-//   chargeVoltage: 220,
-// });
+// // printCar({
+// //   make: "Tesla",
+// //   model: "model 3",
+// //   year: 2020,
+// //   chargeVoltage: 220,
+// // });
 
-const phones: {
-  mobile: {
-    country: string;
-    area: string;
-    number: string;
-  };
-  [k: string]:
-    | {
-        country: string;
-        area: string;
-        number: string;
-      }
-    | undefined;
-} = {
-  home: { country: "+1", area: "211", number: "652-4515" },
-  work: { country: "+1", area: "670", number: "752-5856" },
-  mobile: { country: "+1", area: "322", number: "525-4357" },
-};
-const y = phones["aaaaa"];
+// const phones: {
+//   mobile: {
+//     country: string;
+//     area: string;
+//     number: string;
+//   };
+//   [k: string]:
+//     | {
+//         country: string;
+//         area: string;
+//         number: string;
+//       }
+//     | undefined;
+// } = {
+//   home: { country: "+1", area: "211", number: "652-4515" },
+//   work: { country: "+1", area: "670", number: "752-5856" },
+//   mobile: { country: "+1", area: "322", number: "525-4357" },
+// };
+// const y = phones["aaaaa"];
 
 // phones.mobile;
 // phones["work"]
@@ -1161,3 +1161,38 @@ const y = phones["aaaaa"];
 
 // const numPair: readonly [number, number] = [4, 5];
 // numPair.length;
+
+// const twod: string[][] = [];
+
+// union and intersection types
+
+// type Evens = 2 | 4 | 6 | 8;
+// let evenNumber: Evens = 2;
+
+function flipCoin(): "heads" | "tails" {
+  if (Math.random() > 0.5) return "heads";
+  return "tails" as const;
+}
+// const outCome = flipCoin();
+const success = [
+  "success",
+  { name: "Mike North", email: "mike@example.com" },
+] as const;
+
+const fail = ["error", new Error("something went wrong!")] as const;
+
+function maybeGetUserInfo() {
+  if (flipCoin() === "heads") {
+    return success;
+  } else {
+    return fail;
+  }
+}
+const outCome2 = maybeGetUserInfo();
+
+const [first, second] = outCome2;
+if (second instanceof Error) {
+  second;
+} else {
+  second;
+}
